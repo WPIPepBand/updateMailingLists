@@ -2,7 +2,7 @@ import urllib2
 import json
 
 
-members = json.loads(urllib2.urlopen("http://sheetsu.com/apis/2abe8f64").read())
+members = json.loads(urllib2.urlopen("https://sheetsu.com/apis/v1.0/9cd470744560").read())
 
 
 import argparse
