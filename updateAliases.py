@@ -2,7 +2,7 @@ from urllib.request import urlopen
 import json
 
 response = urlopen("https://sheetsu.com/apis/v1.0/fc69db43d216")
-str_response = response.readall().decode('utf-8')
+str_response = response.read().decode('utf-8')
 members = json.loads(str_response)
 
 import argparse
