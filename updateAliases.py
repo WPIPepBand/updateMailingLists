@@ -1,9 +1,10 @@
-import urllib2
+#!/usr/bin/python3
+from urllib.request import urlopen
 import json
 
-
-members = json.loads(urllib2.urlopen("https://sheetsu.com/apis/v1.0/9cd470744560").read())
-
+response = urlopen("https://sheetsu.com/apis/v1.0/fc69db43d216")
+str_response = response.readall().decode('utf-8')
+members = json.loads(str_response)
 
 import argparse
 import subprocess
@@ -41,8 +42,7 @@ mailingLists = [
     "stands",
     "winterguard"]
 
-
-print "UPDATING MAILING LISTS"
+print("UPDATING MAILING LISTS")
 subprocess.call(["rm", "-f", "-r", "newMailingLists"])
 subprocess.call(["mkdir", "newMailingLists"])
 
@@ -79,60 +79,57 @@ winterGuard = open('newMailingLists/winterguard', 'w')
 
 
 def toEmail(name, email):
-    return (name + ' <'+email+'>\n');
+    return name + ' <' + email + '>\n';
 
 
 def assignStands(name, email, stands):
-    if(stands == "clarinets"):
+    if stands == "clarinets":
         clarinetsOut.write(toEmail(name, email));
         highwoodwindsOut.write(toEmail(name, email));
-    if(stands == "flutes"):
+    if stands == "flutes":
         flutesOut.write(toEmail(name, email));
         highwoodwindsOut.write(toEmail(name, email));
-    if(stands == "trumpets"):
+    if stands == "trumpets":
         trumpetsOut.write(toEmail(name, email));
-    if(stands == "middlewinds"):
+    if stands == "middlewinds":
         middlewindsOut.write(toEmail(name, email));
-    if(stands == "lowbrass"):
+    if stands == "lowbrass":
         lowbrassOut.write(toEmail(name, email));
-    if(stands == "drumline"):
+    if stands == "drumline":
         drumlineOut.write(toEmail(name, email));
-    if(stands == "drumline"):
+    if stands == "drumline":
         pitOut.write(toEmail(name, email));
-    if(stands == "colorguard"):
+    if stands == "colorguard":
         colorguardOut.write(toEmail(name, email));
-    if(stands == "drummajors"):
+    if stands == "drummajors":
         drummajorsOut.write(toEmail(name, email));
+
 
 def assignMarching(name, email, marching):
     marchingOut.write(toEmail(name, email));
-    if(marching == "clarinets"):
+    if marching == "clarinets":
         clarinets_marching.write(toEmail(name, email));
         highwoodwinds_marching.write(toEmail(name, email));
-    if(marching == "flutes"):
+    if marching == "flutes":
         flutes_marching.write(toEmail(name, email));
         highwoodwinds_marching.write(toEmail(name, email));
-    if(marching == "trumpets"):
+    if marching == "trumpets":
         trumpets_marching.write(toEmail(name, email));
-    if(marching == "middlewinds"):
+    if marching == "middlewinds":
         middlewinds_marching.write(toEmail(name, email));
-    if(marching == "lowbrass"):
+    if marching == "lowbrass":
         lowbrass_marching.write(toEmail(name, email));
-    if(marching == "drumline"):
+    if marching == "drumline":
         drumline_marching.write(toEmail(name, email));
-    if(marching == "drumline"):
+    if marching == "drumline":
         pit_marching.write(toEmail(name, email));
-    if(marching == "colorguard"):
+    if marching == "colorguard":
         colorguardOut.write(toEmail(name, email));
 
-
-
-
-for i in members['result']:
-
+for i in members:
     name = i['Name']
-    if(name == "name"):
-        continue;
+    if name == "name":
+        continue
     email = i['Email']
     isPepFun = i['pepfun']
     marching = i['marching']
@@ -146,61 +143,29 @@ for i in members['result']:
     isSophomore = i['sophomores']
     isFreshmen = i['freshmen']
     isWinterGuard = i['winterguard']
-    if(isPepFun == "x"):
+    if isPepFun == "x":
         pepFunOut.write(toEmail(name, email))
-    if(isOnlyStands == "x"):
+    if isOnlyStands == "x":
         stands_only.write(toEmail(name, email))
-    if(isSectionLeader == "x"):
+    if isSectionLeader == "x":
         sectionLeaderOut.write(toEmail(name, email))
-    if(isOfficer == "x"):
+    if isOfficer == "x":
         officerOut.write(toEmail(name, email))
-    if(isPepBand == "x"):
+    if isPepBand == "x":
         pepBandOut.write(toEmail(name, email))
-    if(marching != ""):
+    if marching != "":
         assignMarching(name, email, marching)
     assignStands(name, email, standsSection)
-    if(isSenior == "x"):
+    if isSenior == "x":
         pepSeniors.write(toEmail(name, email));
-    if(isJunior == "x"):
+    if isJunior == "x":
         pepJuniors.write(toEmail(name, email));
-    if(isSophomore == "x"):
+    if isSophomore == "x":
         pepSophomores.write(toEmail(name, email))
-    if(isFreshmen == "x"):
+    if isFreshmen == "x":
         pepFreshmen.write(toEmail(name, email))
-    if(isWinterGuard == "x"):
+    if isWinterGuard == "x":
         winterGuard.write(toEmail(name, email))
-
-
-pepFunOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-marchingOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-standsOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-sectionLeaderOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-officerOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-pepBandOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-clarinetsOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-highwoodwindsOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-flutesOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-trumpetsOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-middlewindsOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-lowbrassOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-drumlineOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-pitOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-colorguardOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-drummajorsOut.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-pepSeniors.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-pepJuniors.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-pepSophomores.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-pepFreshmen.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-highwoodwinds_marching.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-middlewinds_marching.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-lowbrass_marching.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-trumpets_marching.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-clarinets_marching.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-flutes_marching.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-drumline_marching.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-pit_marching.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-stands_only.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
-winterGuard.write(toEmail("Sam Mailand", "sfmailand@wpi.edu"));
 
 pepFunOut.close()
 marchingOut.close()
@@ -234,5 +199,5 @@ stands_only.close();
 winterGuard.close();
 
 
-for list in mailingLists:
-    subprocess.call(["scp", "newMailingLists/"+list, "sfmailand@ccc.wpi.edu:/shared/aliases/"+list])
+# for list in mailingLists:
+#     subprocess.call(["scp", "newMailingLists/"+list, "ajlockman@ccc.wpi.edu:/shared/aliases/"+list])
