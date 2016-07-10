@@ -198,5 +198,5 @@ stands_only.close();
 winterGuard.close();
 
 
-# for list in mailingLists:
-#     subprocess.call(["scp", "newMailingLists/"+list, "ajlockman@ccc.wpi.edu:/shared/aliases/"+list])
+for list in mailingLists:
+    subprocess.call(["scp", "newMailingLists/"+list, "ajlockman@ccc.wpi.edu:/shared/aliases/"+list])
