@@ -1,7 +1,7 @@
 from urllib.request import urlopen
 import json
 
-response = urlopen("https://sheetsu.com/apis/v1.0/fc69db43d216")
+response = urlopen("https://sheetsu.com/apis/v1.0/8288317c2d3c")
 str_response = response.read().decode('utf-8')
 members = json.loads(str_response)
 
@@ -199,4 +199,4 @@ winterGuard.close();
 
 
 for list in mailingLists:
-    subprocess.call(["scp", "newMailingLists/"+list, "ajlockman@ccc.wpi.edu:/shared/aliases/"+list])
+    subprocess.call(["scp", "newMailingLists/"+list, "dkaravoussianis@ccc.wpi.edu:/shared/aliases/"+list])
