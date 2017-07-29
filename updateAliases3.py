@@ -1,13 +1,11 @@
-from urllib.request import urlopen
+import csv
 import json
-
-response = urlopen("https://sheetsu.com/apis/v1.0/1c8d2203")
-str_response = response.read().decode('utf-8')
-members = json.loads(str_response)
-
 import argparse
 import subprocess
 import time
+
+f = open("Email aliases (For script) - Sheet1.csv")
+members = csv.DictReader(f)
 
 mailingLists = [
     "pepoff",
@@ -75,8 +73,6 @@ drumline_marching = open('newMailingLists/drumline-marching', 'w')
 pit_marching = open('newMailingLists/pit-marching', 'w')
 stands_only = open('newMailingLists/stands', 'w')
 winterGuard = open('newMailingLists/winterguard', 'w')
-
-
 def toEmail(name, email):
     return name + ' <' + email + '>\n';
 
@@ -166,6 +162,8 @@ for i in members:
     if isWinterGuard == "x":
         winterGuard.write(toEmail(name, email))
 
+
+  
 pepFunOut.close()
 marchingOut.close()
 standsOut.close()
@@ -197,6 +195,14 @@ drumline_marching.close()
 stands_only.close();
 winterGuard.close();
 
-
 for list in mailingLists:
     subprocess.call(["scp", "newMailingLists/"+list, "dkaravoussianis@ccc.wpi.edu:/shared/aliases/"+list])
+
+if __name__ == "__main__":
+    import os
+    os.chdir("C:\\Users\\demik\\OneDrive\\Documents\\GitHub\\updateMailingLists")
+
+
+
+
+    
