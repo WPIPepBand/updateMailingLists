@@ -198,10 +198,6 @@ winterGuard.close();
 for list in mailingLists:
     subprocess.call(["scp", "newMailingLists/"+list, "dkaravoussianis@ccc.wpi.edu:/shared/aliases/"+list])
 
-if __name__ == "__main__":
-    import os
-    os.chdir("C:\\Users\\demik\\OneDrive\\Documents\\GitHub\\updateMailingLists")
-
 
 
 
