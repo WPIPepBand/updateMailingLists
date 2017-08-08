@@ -96,7 +96,7 @@ def assignStands(name, email, stands):
         lowbrassOut.write(toEmail(name, email));
     if stands == "drumline":
         drumlineOut.write(toEmail(name, email));
-    if stands == "drumline":
+    if stands == "pit":
         pitOut.write(toEmail(name, email));
     if stands == "colorguard":
         colorguardOut.write(toEmail(name, email));
@@ -120,7 +120,7 @@ def assignMarching(name, email, marching):
         lowbrass_marching.write(toEmail(name, email));
     if marching == "drumline":
         drumline_marching.write(toEmail(name, email));
-    if marching == "drumline":
+    if marching == "pit":
         pit_marching.write(toEmail(name, email));
     if marching == "colorguard":
         colorguardOut.write(toEmail(name, email));
