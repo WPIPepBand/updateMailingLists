@@ -1,4 +1,5 @@
 import csv
+import os
 import json
 import argparse
 import subprocess
@@ -194,16 +195,23 @@ pit_marching.close()
 drumline_marching.close()
 stands_only.close();
 winterGuard.close();
+
+# "Legacy" code, its annoyning but works, keep around until the other
+# is tested for a while
 '''
 for list in mailingLists:
     subprocess.call(["scp", "newMailingLists/"+list, "dkaravoussianis@ccc.wpi.edu:/shared/aliases/"+list])
 '''
 
+# Change to the new mailing lists directory to make scp happy
 os.chdir("newMailingLists")
 
+# build the subprocess command
 command = ["scp"]
 for alias in mailingLists:
     command.append(alias)
 command.append("dkaravoussianis@ccc.wpi.edu:/shared/aliases/")
 
+# Call scp once so the secretary doesn't die from typing their password
+# 1000000 times
 subprocess.call(command)
