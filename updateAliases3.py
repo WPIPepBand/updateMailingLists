@@ -194,11 +194,16 @@ pit_marching.close()
 drumline_marching.close()
 stands_only.close();
 winterGuard.close();
-
+'''
 for list in mailingLists:
     subprocess.call(["scp", "newMailingLists/"+list, "dkaravoussianis@ccc.wpi.edu:/shared/aliases/"+list])
+'''
 
+os.chdir("newMailingLists")
 
+command = ["scp"]
+for alias in mailingLists:
+    command.append(alias)
+command.append("dkaravoussianis@ccc.wpi.edu:/shared/aliases/")
 
-
-    
+subprocess.call(command)
