@@ -95,8 +95,8 @@ def assignStands(name, email, stands):
         drumlineOut.write(toEmail(name, email));
     if stands == "drumline":
         pitOut.write(toEmail(name, email));
-    if stands == "colorguard":
-        colorguardOut.write(toEmail(name, email));
+ #   if stands == "colorguard":
+  #      colorguardOut.write(toEmail(name, email));
     if stands == "drummajors":
         drummajorsOut.write(toEmail(name, email));
 
