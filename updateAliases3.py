@@ -210,7 +210,7 @@ os.chdir("newMailingLists")
 command = ["scp"]
 for alias in mailingLists:
     command.append(alias)
-command.append("dkaravoussianis@ccc.wpi.edu:/shared/aliases/")
+command.append("admoore@ccc.wpi.edu:/shared/aliases/")
 
 # Call scp once so the secretary doesn't die from typing their password
 # 1000000 times
